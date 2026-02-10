@@ -14,11 +14,11 @@ const CONFIG = {
 
   playlist: [
 
-    "/static/images/Your-20Friends_spotdown.org.mp3",
+    "static/images/Your-20Friends_spotdown.org.mp3",
 
-    "/static/images/Yes_spotdown.org.mp3",
+    "static/images/Yes_spotdown.org.mp3",
 
-    "/static/images/Interlude_spotdown.org.mp3"
+    "static/images/Interlude_spotdown.org.mp3"
 
   ],
 
@@ -522,8 +522,8 @@ resizeFlowers();
 
 const FLOWER_SRC = [
 
-  "/static/images/image-from-rawpixel-id-15075931-png.png",
-  "/static/images/vecteezy_vibrant-red-hibiscus-flower-closeup-botanical-beauty_68656606.png"
+  "static/images/image-from-rawpixel-id-15075931-png.png",
+  "static/images/vecteezy_vibrant-red-hibiscus-flower-closeup-botanical-beauty_68656606.png"
 
 ];
 
