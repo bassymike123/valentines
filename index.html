@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/static/images/valentines_project.css">
+<title>Sarah 💗</title>
+</head>
+
+<body>
+<div class="bg"></div>
+<div class="vignette"></div>
+<div class="stage noselect">
+<!-- top-left label -->
+<div class="playingLabel"><a href="javascript:void(0)">Playing Hunxho</a></div>
+<!-- shared “Spotify-like” now-playing card -->
+<div class="nowCard" id="nowCard" aria-label="Now playing card">
+<div class="cover">
+<!-- Replace this cover art with the real image -->
+<!-- <img src="cover.jpg" alt="cover" /> -->
+<div class="fallback">🎵</div>
+</div>
+<div class="meta">
+<div class="title" id="trackTitle">Your Friends</div>
+<div class="sub">▶ Music video • <span id="artistName">Hunxho</span></div>
+</div>
+<button class="plusBtn" aria-label="Add">+</button>
+</div>
+<!-- Scene 3: Letter -->
+<div class="letterWrap" id="letterWrap">
+<div>
+<div class="letter" id="letterCard">
+
+<!-- Replace with your letter icon image -->
+<!-- <img src="letter.png" alt="letter" /> -->
+<div style="font-size:44px; opacity:.95;"><img src="/static/images/pexels-roman-friptuleac-166600420-10916294.jpg"></div>
+</div>
+<div class="tapText">Tap to Reveal</div>
+</div>
+</div>
+<!-- tap-anywhere layer for reveal -->
+<div class="tapLayer" id="tapLayer"></div>
+<!-- Scene 4: Question -->
+<div class="questionWrap" id="questionWrap">
+<div class="qCard">
+<div class="qTitle" id="qName">Sarah🌺</div>
+<p class="qText">Can I spend my valentines with you</p>
+<div class="verse" id="verseRef">Philippians 1:3</div>
+<div class="verseQuote">“I thank God every time I remember you”</div>
+<div class="qBtns">
+<button class="pill yes" id="yesBtn">Yes</button>
+<button class="pill no" id="noBtn">No</button>
+</div>
+<div class="heartLine">Pick what your heart says mama</div>
+</div>
+</div>
+<!-- Scene 5: YES Result -->
+<canvas id="confetti"></canvas>
+<canvas id="flowers"></canvas>
+<div class="resultWrap" id="yesWrap">
+<div class="resultBox">
+<div class="resultTitle">She said yes girls</div>
+<div class="mediaFrame">
+<!-- Replace with actual GIF/video -->
+ <div class="tenor-gif-embed" data-postid="9925107239361852124" data-share-method="host" data-aspect-ratio="1.78218" data-width="100%"><a href="https://tenor.com/view/kpop-demon-hunters-kpdh-rumi-rumi-kpdh-mira-gif-9925107239361852124">Kpop Demon Hunters Kpdh GIF</a>from <a href="https://tenor.com/search/kpop+demon+hunters-gifs">Kpop Demon Hunters GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+<!-- Or video:
+<video src="yes.mp4" autoplay loop muted playsinline></video>
+
+          -->
+</div>
+</div>
+</div>
+<!-- Scene 6: NO Result -->
+<div class="resultWrap" id="noWrap">
+<div class="resultBox">
+<div class="resultTitle">No 😢???</div>
+<div class="mediaFrame">
+<!-- Replace with actual GIF/video -->
+ <div class="tenor-gif-embed" data-postid="9768280837211681986" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/huntrix-excited-friday-eve-gif-9768280837211681986">Huntrix Excited GIF</a>from <a href="https://tenor.com/search/huntrix-gifs">Huntrix GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+<!-- Or video:
+<video src="no.mp4" autoplay loop muted playsinline></video>
+
+          -->
+</div>
+</div>
+</div>
+<!-- little toast -->
+<div class="hintToast" id="toast">Tap once to enable sound 💗</div>
+<!-- Audio (playlist) -->
+<audio id="player" preload="auto"></audio>
+</div>
+
+<script src="/static/images/valentines_project.js"></script>
+</body>
+</html>

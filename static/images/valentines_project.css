@@ -1,0 +1,762 @@
+  :root{
+
+    --text:#ffffff;
+
+    --muted:rgba(255,255,255,.78);
+
+    --card:rgba(0,0,0,.55);
+
+    --card2:rgba(18,18,18,.72);
+
+    --border:rgba(255,255,255,.18);
+
+    --green:#1DB954; /* spotify-ish */
+
+    --shadow: 0 18px 60px rgba(0,0,0,.45);
+
+    --radius:18px;
+
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ height:100%; }
+
+  body{
+
+    margin:0;
+
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+
+    color:var(--text);
+
+    overflow:hidden;
+
+    background:#000;
+
+  }
+
+  /* Background image (replace with your rose image path) */
+
+  .bg{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+      radial-gradient(1200px 900px at 20% 10%, rgba(255,80,120,.10), transparent 55%),
+
+      radial-gradient(900px 700px at 80% 30%, rgba(255,255,255,.10), transparent 60%),
+
+      linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.70)),
+
+      url("/static/images/balogh-nalaputra-balint-hibiscus2.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    filter:saturate(1.05) contrast(1.05);
+
+    transform:scale(1.02);
+
+  }
+
+  /* subtle vignette */
+
+  .vignette{
+
+    position:fixed;
+
+    inset:0;
+
+    background: radial-gradient(1200px 900px at 50% 35%, transparent 35%, rgba(0,0,0,.58) 100%);
+
+    pointer-events:none;
+
+  }
+
+  /* App stage */
+
+  .stage{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+  }
+
+  /* Top-left “Playing Hunxho” */
+
+  .playingLabel{
+
+    position:fixed;
+
+    left:18px;
+
+    top:18px;
+
+    z-index:40;
+
+    font-weight:800;
+
+    letter-spacing:.2px;
+
+    color:var(--green);
+
+    text-shadow: 0 8px 18px rgba(0,0,0,.55);
+
+    user-select:none;
+
+  }
+
+  .playingLabel a{
+
+    color:var(--green);
+
+    text-decoration: underline;
+
+    text-underline-offset: 3px;
+
+  }
+
+  /* Spotify-style card (shared element) */
+
+  .nowCard{
+
+    position:fixed;
+
+    left:50%;
+
+    top:50%;
+
+    transform: translate(-50%, -50%);
+
+    width:min(520px, 90vw);
+
+    height:92px;
+
+    border-radius:14px;
+
+    background: rgba(12,12,12,.72);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow: var(--shadow);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px;
+
+    z-index:30;
+
+    backdrop-filter: blur(10px);
+
+    will-change: transform, left, top, width;
+
+  }
+
+  /* motion blur */
+  .nowCard.motion-blur {
+    filter: blur(6px);
+    opacity: 0.88;
+  }
+
+
+  /* falling hibiscus layer  flowers */
+  #flowers {
+    position: fixed;
+    inset: 0;
+    z-index: 24;   /* behind letter/question */
+    pointer-events: none;
+    opacity: 1;
+
+
+  }
+
+  .cover{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    flex:0 0 auto;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    background: linear-gradient(135deg, rgba(255,80,120,.28), rgba(255,255,255,.12));
+
+    display:grid;
+
+    place-items:center;
+
+    position:relative;
+
+  }
+
+  .cover img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+  }
+
+  .cover .fallback{
+
+    font-weight:900;
+
+    font-size:14px;
+
+    opacity:.9;
+
+  }
+
+  .meta{
+
+    flex:1 1 auto;
+
+    min-width:0;
+
+  }
+
+  .meta .title{
+
+    font-weight:900;
+
+    font-size:18px;
+
+    line-height:1.1;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+  }
+
+  .meta .sub{
+
+    margin-top:4px;
+
+    font-size:13px;
+
+    color:rgba(255,255,255,.78);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+  }
+
+  .plusBtn{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,.22);
+
+    background: rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-weight:900;
+
+    display:grid;
+
+    place-items:center;
+
+    cursor:pointer;
+
+    flex:0 0 auto;
+
+  }
+
+  .plusBtn:active{ transform: scale(.98); }
+
+  /* Mini card state (top-left) */
+
+  .nowCard.mini{
+
+    left:18px;
+
+    top:54px;
+
+    transform: translate(0,0);
+
+    width:300px;
+
+    height:72px;
+
+    padding:10px;
+
+  }
+
+  .nowCard.mini .meta .title{ font-size:14px; }
+
+  .nowCard.mini .meta .sub{ font-size:11px; margin-top:2px; }
+
+  /* Apple-like “shrink + swoosh” animation */
+
+  @keyframes shrinkToCorner{
+
+    0%{ transform: translate(-50%, -50%) scale(1); filter:brightness(1); }
+
+    55%{ transform: translate(-50%, -50%) scale(.92); filter:brightness(1.08); }
+
+    100%{ transform: translate(0,0) scale(.92); filter:brightness(1.02); }
+
+  }
+
+  /* Letter scene */
+
+  .letterWrap{
+
+    position:fixed;
+
+    inset:0;
+
+    display:grid;
+
+    place-items:center;
+
+    z-index:25;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition: opacity .35s ease;
+
+  }
+
+  .letterWrap.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+  }
+
+  .letter{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:20px;
+    
+    backdrop-filter: blur(10px);
+
+    display:grid;
+
+    place-items:center;
+
+    box-shadow: var(--shadow);
+
+    transform: translateY(18px) scale(.92);
+
+    transition: transform .35s ease;
+
+    position:relative;
+
+  }
+
+  .letterWrap.show .letter{
+
+    transform: translateY(0) scale(1);
+
+  }
+
+  .letter img{
+
+    width:70%;
+
+    height:70%;
+
+    object-fit:contain;
+
+    opacity:.95;
+
+  }
+
+  .tapText{
+
+    margin-top:10px;
+    margin-right: 20px;
+
+    font-weight:900;
+
+    letter-spacing:.2px;
+
+    color: rgba(255,255,255,.9);
+
+    text-shadow: 0 10px 25px rgba(0,0,0,.55);
+
+    text-align:center;
+
+  }
+
+  /* Question card */
+
+  .questionWrap{
+
+    position:fixed;
+
+    inset:0;
+
+    display:grid;
+
+    place-items:center;
+
+    z-index:26;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition: opacity .35s ease;
+
+  }
+
+  .questionWrap.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+  }
+
+  .qCard{
+
+    width:min(520px, 92vw);
+
+    background: rgba(255,255,255,.88);
+
+    color:#111;
+
+    border-radius:16px;
+
+    border:2px solid rgba(140, 90, 255, .38); /* subtle purple like your wireframe */
+
+    box-shadow: 0 22px 70px rgba(0,0,0,.45);
+
+    padding:18px 18px 16px;
+
+    text-align:center;
+
+    transform: translateY(14px) scale(.98);
+
+    transition: transform .35s ease;
+
+  }
+
+  .questionWrap.show .qCard{ transform: translateY(0) scale(1); }
+
+  .qTitle{
+
+    font-weight:950;
+
+    font-size:26px;
+
+    margin:0 0 6px 0;
+
+  }
+
+  .qText{
+
+    margin:0 0 12px 0;
+
+    font-size:16px;
+
+  }
+
+  .verse{
+
+    font-size:13px;
+
+    font-weight:800;
+
+    opacity:.9;
+
+    margin:6px 0 0;
+
+  }
+
+  .verseQuote{
+
+    margin:6px 0 14px;
+
+    font-size:14px;
+
+    opacity:.9;
+
+    font-style:italic;
+
+  }
+
+  .qBtns{
+
+    display:flex;
+
+    gap:12px;
+
+    justify-content:center;
+
+    margin-top:8px;
+
+    flex-wrap:wrap;
+
+  }
+
+  .pill{
+
+    min-width:150px;
+
+    padding:12px 16px;
+
+    border-radius:999px;
+
+    border:0;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow: 0 14px 30px rgba(0,0,0,.18);
+
+  }
+
+  .pill.yes{
+
+    background: linear-gradient(135deg, #ff4d88, #ff7aa8);
+
+    color:#fff;
+
+  }
+
+  .pill.no{
+
+    background: rgba(0,0,0,.10);
+
+    border:1px solid rgba(0,0,0,.12);
+
+    color:#222;
+
+  }
+
+  .pill:active{ transform: scale(.98); }
+
+  .heartLine{
+
+    margin:12px 0 0;
+
+    font-weight:900;
+
+    opacity:.9;
+
+  }
+
+  /* Result scenes (Yes/No) */
+
+  .resultWrap{
+
+    position:fixed;
+
+    inset:0;
+
+    display:grid;
+
+    place-items:center;
+
+    z-index:28;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition: opacity .35s ease;
+
+  }
+
+  .resultWrap.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+  }
+
+  .resultBox{
+
+    width:min(760px, 92vw);
+
+    text-align:center;
+
+    transform: translateY(10px) scale(.98);
+
+    transition: transform .35s ease;
+
+  }
+
+  .resultWrap.show .resultBox{
+
+    transform: translateY(0) scale(1);
+
+  }
+
+  .resultTitle{
+
+    font-weight:950;
+
+    font-size:34px;
+
+    margin:0 0 10px 0;
+
+    text-shadow: 0 18px 40px rgba(0,0,0,.55);
+
+  }
+
+  .mediaFrame{
+
+    width:min(640px, 92vw);
+
+    margin:0 auto;
+
+    border-radius:14px;
+
+    border:2px solid rgba(140, 90, 255, .38);
+
+    overflow:hidden;
+
+    box-shadow: var(--shadow);
+
+    background: rgba(0,0,0,.35);
+
+  }
+
+  .mediaFrame img, .mediaFrame video{
+
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+  }
+
+  /* Confetti canvas */
+
+  #confetti{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:29;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    transition: opacity .25s ease;
+
+  }
+
+  #confetti.show{ opacity:1; }
+
+  /* Small helper toast */
+
+  .hintToast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:18px;
+
+    transform: translateX(-50%);
+
+    z-index:50;
+
+    background: rgba(0,0,0,.55);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    color:rgba(255,255,255,.92);
+
+    padding:10px 14px;
+
+    border-radius:999px;
+
+    font-weight:850;
+
+    font-size:13px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 16px 40px rgba(0,0,0,.45);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition: opacity .25s ease, transform .25s ease;
+
+  }
+
+  .hintToast.show{
+
+    opacity:1;
+
+    transform: translateX(-50%) translateY(-2px);
+
+  }
+
+  /* Hide selectable */
+
+  .noselect{ user-select:none; -webkit-user-select:none; }
+
+  /* Tap-anywhere layer (Scene 3) */
+
+  .tapLayer{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:27;
+
+    display:none;
+
+  }
+
+  .tapLayer.show{ display:block; }
